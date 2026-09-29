@@ -1,0 +1,16 @@
+name = "apirone-example"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+# No `compatibility_flags = ["nodejs_compat"]` needed: apirone-workerd uses only fetch and Web APIs.
+
+# Optional, for authMode: 'jwt' token sharing across isolates:
+# [[kv_namespaces]]
+# binding = "TOKENS"
+# id = "<kv-namespace-id>"
+
+# Secrets (never put these in wrangler.toml):
+#   wrangler secret put APIRONE_TRANSFER_KEY
+#   wrangler secret put CALLBACK_SECRET
+# APIRONE_ACCOUNT is not secret:
+# [vars]
+# APIRONE_ACCOUNT = "apr-..."

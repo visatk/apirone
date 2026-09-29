@@ -1,0 +1,65 @@
+{
+  "name": "apirone-workerd",
+  "version": "0.1.0",
+  "description": "Apirone crypto payments API client built for Cloudflare Workers (workerd). Zero runtime dependencies, fetch + Web Crypto only, no nodejs_compat required.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "keywords": [
+    "apirone",
+    "crypto",
+    "bitcoin",
+    "payments",
+    "cloudflare",
+    "workers",
+    "workerd",
+    "invoices"
+  ],
+  "main": "./dist/entries/node.js",
+  "module": "./dist/entries/node.js",
+  "types": "./dist/entries/node.d.ts",
+  "exports": {
+    ".": {
+      "workerd": {
+        "types": "./dist/entries/workerd.d.ts",
+        "default": "./dist/entries/workerd.js"
+      },
+      "worker": {
+        "types": "./dist/entries/workerd.d.ts",
+        "default": "./dist/entries/workerd.js"
+      },
+      "node": {
+        "types": "./dist/entries/node.d.ts",
+        "default": "./dist/entries/node.js"
+      },
+      "import": {
+        "types": "./dist/entries/node.d.ts",
+        "default": "./dist/entries/node.js"
+      },
+      "default": {
+        "types": "./dist/entries/node.d.ts",
+        "default": "./dist/entries/node.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test \"test/*.test.mjs\"",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260929.1",
+    "typescript": "^5.6.0"
+  }
+}
